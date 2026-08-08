@@ -6,12 +6,17 @@ workflows:
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
     scripts:
-      - name: Install npm dependencies
+      - name: Install npm dependencies and fix permissions
         script: |
           npm install
+          chmod -R +x node_modules/.bin/
       - name: Sync Capacitor
         script: |
           npx cap sync ios
+      - name: Install CocoaPods
+        script: |
+          cd ios/App
+          pod install --repo-update
       - name: Build iOS app
         script: |
           xcodebuild build \
@@ -24,3 +29,12 @@ workflows:
             | xcpretty
     artifacts:
       - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+    publishing:
+      email:
+        recipients:
+          - danilmihryukov@gmail.com
+        notify:
+          success: true
+          failure: true
