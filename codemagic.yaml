@@ -7,6 +7,7 @@ workflows:
         XCODE_PROJECT: "ios/App/App.xcodeproj"
         XCODE_SCHEME: "App"
         BUNDLE_ID: "com.neonmerge.app"
+        XCODE_BUILD_CONFIGURATION: "Release"
     triggering:
       events:
         - push
@@ -35,10 +36,13 @@ workflows:
           xcodebuild build \
             -workspace "$XCODE_WORKSPACE" \
             -scheme "$XCODE_SCHEME" \
-            -configuration Release \
+            -configuration "$XCODE_BUILD_CONFIGURATION" \
             -destination "generic/platform=iOS" \
+            -allowProvisioningUpdates \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
+            ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO \
+            SWIFT_ACTIVE_EXECUTION_ENVIRONMENT=NO \
             | xcpretty
     artifacts:
       - build/ios/ipa/*.ipa
