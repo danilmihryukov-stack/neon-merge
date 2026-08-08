@@ -30,9 +30,6 @@ workflows:
       - name: Install CocoaPods
         script: |
           cd ios/App && pod install --repo-update
-      - name: Set up code signing settings on Xcode project
-        script: |
-          xcode-project use-profiles
       - name: Build iOS app
         script: |
           xcodebuild build \
@@ -40,10 +37,8 @@ workflows:
             -scheme "$XCODE_SCHEME" \
             -configuration "$XCODE_BUILD_CONFIGURATION" \
             -destination "generic/platform=iOS" \
-            -allowProvisioningUpdates \
-            DEVELOPMENT_TEAM="" \
-            CODE_SIGN_IDENTITY="Apple Development" \
-            PROVISIONING_PROFILE_SPECIFIER="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
             | xcpretty
     artifacts:
       - build/ios/ipa/*.ipa
