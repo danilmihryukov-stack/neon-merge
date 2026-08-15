@@ -2,13 +2,38 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
     <title>NEON MERGE - CYBERPUNK EDITION</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="matter.min.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; overflow: hidden; background: #05010d; font-family: 'Share Tech Mono', monospace; display: flex; justify-content: center; align-items: center; user-select: none; -webkit-user-select: none; overscroll-behavior: none; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #05010d;
+            font-family: 'Share Tech Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            -webkit-user-select: none;
+            overscroll-behavior: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        body {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
         body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(255, 0, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px), radial-gradient(ellipse at center, #1a0033 0%, #05010d 70%); background-size: 40px 40px, 40px 40px, 100% 100%; pointer-events: none; z-index: -1; }
         @keyframes screenShake { 0%, 100% { transform: translate(0, 0); } 10% { transform: translate(-8px, -4px); } 20% { transform: translate(8px, 4px); } 30% { transform: translate(-8px, 4px); } 40% { transform: translate(8px, -4px); } 50% { transform: translate(-4px, 8px); } 60% { transform: translate(4px, -8px); } 70% { transform: translate(-4px, -4px); } 80% { transform: translate(4px, 4px); } 90% { transform: translate(0, 0); } }
         body.shaking { animation: screenShake 0.5s ease-in-out; }
@@ -260,7 +285,7 @@
     <div class="settings-title">НАСТРОЙКИ</div>
     <div class="settings-panel">
         <div class="settings-row">
-            <div class="settings-label"><span class="icon"></span><span>МУЗЫКА</span></div>
+            <div class="settings-label"><span class="icon">🎵</span><span>МУЗЫКА</span></div>
             <div class="volume-controls">
                 <button class="volume-btn" id="music-minus">−</button>
                 <div class="volume-value" id="music-volume-value">70%</div>
@@ -278,9 +303,9 @@
             </div>
         </div>
         <div class="volume-bar"><div class="volume-fill sfx" id="sfx-volume-fill" style="width: 80%"></div></div>
-        <button class="mute-btn" id="mute-sfx-btn">🔇 ВЫКЛЮЧИТЬ ЭФФЕКТЫ</button>
+        <button class="mute-btn" id="mute-sfx-btn"> ВЫКЛЮЧИТЬ ЭФФЕКТЫ</button>
         <div class="volume-bar" style="margin-top: 20px;"><div class="volume-fill all" id="all-volume-fill" style="width: 75%"></div></div>
-        <button class="mute-btn mute-all" id="mute-all-btn"> ВЫКЛЮЧИТЬ ВСЁ</button>
+        <button class="mute-btn mute-all" id="mute-all-btn">🔇 ВЫКЛЮЧИТЬ ВСЁ</button>
         <button class="mute-btn" id="btn-test-sounds" style="margin-top: 15px; border-color: #ffff00; color: #ffff00;">🎮 ТЕСТ ВСЕХ ЗВУКОВ</button>
     </div>
     <button class="settings-back" id="btn-back-settings">◀ НАЗАД</button>
@@ -293,7 +318,7 @@
         <button class="device-btn" data-mode="pc"><div class="device-icon">💻</div><div class="device-name">ПК</div><div class="device-desc">МЫШЬ</div></button>
         <button class="device-btn" data-mode="mobile"><div class="device-icon">📱</div><div class="device-name">ТЕЛЕФОН</div><div class="device-desc">СЕНСОР</div></button>
     </div>
-    <button class="back-to-main" id="btn-back-device"> В ГЛАВНОЕ МЕНЮ</button>
+    <button class="back-to-main" id="btn-back-device">◀ В ГЛАВНОЕ МЕНЮ</button>
 </div>
 <div id="game-wrapper">
     <div id="game-area">
@@ -323,7 +348,7 @@
                     <button id="mob-music-btn" class="ctrl-btn music-btn-ctrl" title="Музыка">🎵</button>
                     <div class="next-fruit-mini" id="mob-next-icon">🍒</div>
                     <button id="mob-remove-btn" class="action-btn-mobile remove-btn-mob">🗑 <span id="mob-remove-count">5</span></button>
-                    <button id="mob-move-btn" class="action-btn-mobile move-btn-mob">⟳<span id="mob-move-count">1</span></button>
+                    <button id="mob-move-btn" class="action-btn-mobile move-btn-mob">⟳ <span id="mob-move-count">1</span></button>
                     <button id="mob-cancel-btn" class="action-btn-mobile cancel-btn-mob" disabled>✕</button>
                     <button id="mob-collection-btn" class="ctrl-btn collection-btn-ctrl" title="Коллекция">📋</button>
                 </div>
@@ -352,8 +377,8 @@
             </div>
         </div>
         <div class="action-buttons-container">
-            <button id="move-btn">⟳ ПЕРЕМЕСТИТЬ <span id="move-count">(1)</span></button>
-            <button id="remove-btn">🗑️ УДАЛИТЬ <span id="remove-count">(5)</span></button>
+            <button id="move-btn"> ПЕРЕМЕСТИТЬ <span id="move-count">(1)</span></button>
+            <button id="remove-btn">🗑 УДАЛИТЬ <span id="remove-count">(5)</span></button>
             <button id="cancel-btn" disabled>✕ ОТМЕНА</button>
         </div>
     </div>
@@ -367,7 +392,7 @@
         <div class="ad-timer-container">
             <div class="ad-timer-fill" id="ad-timer-bar"></div>
         </div>
-        <button class="ad-btn" id="btn-claim-reward" disabled>⏳ ОЖИДАНИЕ (30)</button>
+        <button class="ad-btn" id="btn-claim-reward" disabled> ОЖИДАНИЕ (30)</button>
         <button class="ad-cancel" id="btn-close-ad">ОТМЕНА</button>
     </div>
 </div>
@@ -383,7 +408,7 @@
 </div>
 <div id="exit-confirm-modal">
     <div class="exit-confirm-content">
-        <div class="exit-confirm-icon">⚠</div>
+        <div class="exit-confirm-icon"></div>
         <div class="exit-confirm-title">ВЫЙТИ В МЕНЮ?</div>
         <div class="exit-confirm-text">Ваш прогресс будет сброшен!</div>
         <div class="exit-confirm-buttons">
@@ -393,6 +418,20 @@
     </div>
 </div>
 <script>
+    function enterFullscreen() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(err => console.log('Fullscreen error:', err));
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    }
+    document.addEventListener('click', function() { enterFullscreen(); }, { once: true });
+    document.addEventListener('touchstart', function() { enterFullscreen(); }, { once: true });
+    window.addEventListener('load', function() { setTimeout(enterFullscreen, 500); });
+
     let audioContext = null, musicGain = null, sfxGain = null;
     let musicVolume = 0.7, sfxVolume = 0.8;
     let isMusicMuted = false, isSfxMuted = false;
@@ -441,15 +480,15 @@
     function toggleMuteAll() { initAudio(); const bothMuted = isMusicMuted && isSfxMuted; if (bothMuted) { isMusicMuted = false; isSfxMuted = false; if (musicGain) musicGain.gain.value = musicVolume; if (sfxGain) sfxGain.gain.value = sfxVolume; startBackgroundMusic(); } else { isMusicMuted = true; isSfxMuted = true; if (musicGain) musicGain.gain.value = 0; if (sfxGain) sfxGain.gain.value = 0; stopBackgroundMusic(); } updateMusicMuteButton(); updateSfxMuteButton(); updateMusicToggle(); updateSfxToggle(); updateMuteAllButton(); playSound('click'); }
     function updateMusicVolumeUI() { const percent = Math.round(musicVolume * 100); document.getElementById('music-volume-value').innerText = percent + '%'; document.getElementById('music-volume-fill').style.width = percent + '%'; }
     function updateSfxVolumeUI() { const percent = Math.round(sfxVolume * 100); document.getElementById('sfx-volume-value').innerText = percent + '%'; document.getElementById('sfx-volume-fill').style.width = percent + '%'; }
-    function updateMusicMuteButton() { const btn = document.getElementById('mute-music-btn'); if (isMusicMuted) { btn.innerHTML = '🔊 ВКЛЮЧИТЬ МУЗЫКУ'; btn.classList.add('muted'); } else { btn.innerHTML = '🔇 ВЫКЛЮЧИТЬ МУЗЫКУ'; btn.classList.remove('muted'); } }
+    function updateMusicMuteButton() { const btn = document.getElementById('mute-music-btn'); if (isMusicMuted) { btn.innerHTML = ' ВКЛЮЧИТЬ МУЗЫКУ'; btn.classList.add('muted'); } else { btn.innerHTML = '🔇 ВЫКЛЮЧИТЬ МУЗЫКУ'; btn.classList.remove('muted'); } }
     function updateSfxMuteButton() { const btn = document.getElementById('mute-sfx-btn'); if (isSfxMuted) { btn.innerHTML = '🔊 ВКЛЮЧИТЬ ЭФФЕКТЫ'; btn.classList.add('muted'); } else { btn.innerHTML = '🔇 ВЫКЛЮЧИТЬ ЭФФЕКТЫ'; btn.classList.remove('muted'); } }
-    function updateMusicToggle() { const toggles = document.querySelectorAll('.music-btn, .music-btn-ctrl'); toggles.forEach(toggle => { if (!toggle) return; if (isMusicMuted) { toggle.innerHTML = ''; toggle.classList.add('muted'); } else { toggle.innerHTML = '🎵'; toggle.classList.remove('muted'); } }); }
+    function updateMusicToggle() { const toggles = document.querySelectorAll('.music-btn, .music-btn-ctrl'); toggles.forEach(toggle => { if (!toggle) return; if (isMusicMuted) { toggle.innerHTML = '🔇'; toggle.classList.add('muted'); } else { toggle.innerHTML = '🎵'; toggle.classList.remove('muted'); } }); }
     function updateSfxToggle() { const toggles = document.querySelectorAll('.sfx-btn'); toggles.forEach(toggle => { if (!toggle) return; if (isSfxMuted) { toggle.innerHTML = '🔇'; toggle.classList.add('muted'); } else { toggle.innerHTML = '🔊'; toggle.classList.remove('muted'); } }); }
     function updateMuteAllButton() { const btn = document.getElementById('mute-all-btn'); if (isMusicMuted && isSfxMuted) { btn.innerHTML = '🔊 ВКЛЮЧИТЬ ВСЁ'; btn.classList.add('muted'); } else { btn.innerHTML = '🔇 ВЫКЛЮЧИТЬ ВСЁ'; btn.classList.remove('muted'); } }
     function showDeviceMenu() { initAudio(); startBackgroundMusic(); playSound('click'); document.getElementById('main-menu').classList.add('hidden'); document.getElementById('device-menu').classList.add('active'); }
     function showSettings() { initAudio(); playSound('click'); document.getElementById('main-menu').classList.add('hidden'); document.getElementById('settings-menu').classList.add('active'); }
     function hideSettings() { playSound('click'); document.getElementById('settings-menu').classList.remove('active'); document.getElementById('main-menu').classList.remove('hidden'); }
-    function backToMain() { playSound('click'); document.getElementById('device-menu').classList.remove('active'); document.getElementById('main-menu').classList.remove('hidden'); }
+    function backToMain() { playSound('click'); stopBackgroundMusic(); document.getElementById('device-menu').classList.remove('active'); document.getElementById('main-menu').classList.remove('hidden'); }
     function backToMainFromGame() { playSound('click'); stopBackgroundMusic(); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }
     function showFloatingScore(x, y, points, color) { const score = document.createElement('div'); score.className = 'floating-score'; score.innerText = '+' + points; score.style.left = x + 'px'; score.style.top = y + 'px'; score.style.color = color; score.style.textShadow = '0 0 8px ' + color + ', 0 0 15px ' + color; document.getElementById('game-container').appendChild(score); setTimeout(function() { score.remove(); }, 1200); }
     function showCombo(count) { const combo = document.getElementById('combo-display'); combo.innerText = 'COMBO x' + count + '!'; combo.classList.add('active'); setTimeout(function() { combo.classList.remove('active'); }, 1000); }
@@ -459,7 +498,7 @@
     function showAchievement(text) { const achievement = document.createElement('div'); achievement.className = 'achievement'; achievement.innerText = 'TROPHY ' + text; document.getElementById('achievements').appendChild(achievement); setTimeout(function() { achievement.remove(); }, 3500); }
     function openExitModal() { document.getElementById('exit-confirm-modal').classList.add('active'); playSound('click'); }
     function closeExitModal() { document.getElementById('exit-confirm-modal').classList.remove('active'); playSound('click'); }
-    function confirmExitToMenu() { closeExitModal(); playSound('click'); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }
+    function confirmExitToMenu() { closeExitModal(); playSound('click'); stopBackgroundMusic(); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }
     function openAdModal(type) {
         rewardClaimed = false;
         pendingAdRewardType = type;
@@ -580,13 +619,13 @@
     const closeAdBtn = document.getElementById('btn-close-ad');
     if (closeAdBtn) { closeAdBtn.addEventListener('click', function() { playSound('click'); closeAdModal(); }); }
     const restartBtn = document.getElementById('btn-restart');
-    if (restartBtn) { restartBtn.addEventListener('click', function() { playSound('click'); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }); }
+    if (restartBtn) { restartBtn.addEventListener('click', function() { playSound('click'); stopBackgroundMusic(); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }); }
     const backGameBtn = document.getElementById('btn-back-game');
-    if (backGameBtn) { backGameBtn.addEventListener('click', function() { playSound('click'); backToMainFromGame(); }); }
+    if (backGameBtn) { backGameBtn.addEventListener('click', function() { playSound('click'); stopBackgroundMusic(); backToMainFromGame(); }); }
     const continuePlayBtn = document.getElementById('btn-continue-play');
     if (continuePlayBtn) { continuePlayBtn.addEventListener('click', function() { playSound('click'); document.getElementById('victory-modal').classList.remove('active'); }); }
     const victoryMenuBtn = document.getElementById('btn-victory-menu');
-    if (victoryMenuBtn) { victoryMenuBtn.addEventListener('click', function() { playSound('click'); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }); }
+    if (victoryMenuBtn) { victoryMenuBtn.addEventListener('click', function() { playSound('click'); stopBackgroundMusic(); if (window.AndroidBridge) { window.AndroidBridge.restartGame(); } else { location.reload(); } }); }
     updateMusicVolumeUI(); updateSfxVolumeUI(); updateMusicMuteButton(); updateSfxMuteButton(); updateMuteAllButton(); updateMusicToggle(); updateSfxToggle();
     });
     let gameMode = null, removeCount = 5, selectionMode = false;
